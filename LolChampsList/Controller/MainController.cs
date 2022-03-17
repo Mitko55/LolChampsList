@@ -16,5 +16,15 @@ namespace LolChampsList.Controller
                 return db.LolChamps.ToList();
             }
         }
+
+        public void CreateLolChamp(LolChamp lc)
+        {
+            using(LolChampsDBEntities lcdb = new LolChampsDBEntities())
+            {
+                lc.Id = lcdb.LolChamps.ToList().LastOrDefault().Id + 1;
+                lcdb.LolChamps.Add(lc);
+                lcdb.SaveChanges();
+            }
+        }
     }
 }
